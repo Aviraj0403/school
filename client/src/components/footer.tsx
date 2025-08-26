@@ -154,7 +154,7 @@ export default function Footer() {
         <div className="border-t border-primary-foreground/20 pt-8" data-testid="footer-bottom">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-primary-foreground/80 text-sm">
-              © 2024 St. John's Public School, Bikrampur. All rights reserved.
+              © 2025 St. John's Public School, Bikrampur. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <span className="text-primary-foreground/80">Privacy Policy</span>

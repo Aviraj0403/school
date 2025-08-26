@@ -26,7 +26,8 @@ export default function Header() {
             />
             <div>
               <h1 className="text-lg font-bold text-primary">St. John's Public School</h1>
-              <p className="text-xs text-muted-foreground">Bikrampur, Begusarai</p>
+              <p className="text-xs text-muted-foreground">Learning Today , Leading Tommorow</p>
+              
             </div>
           </div>
 
