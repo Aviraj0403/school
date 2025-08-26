@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import os from "os";
 
 const app = express();
 app.use(express.json());
@@ -46,18 +47,27 @@ app.use((req, res, next) => {
     res.status(status).json({ message });
     throw err;
   });
+
   if (app.get("env") === "development") {
     await setupVite(app, server);
+    // serveStatic(app);
   } else {
     serveStatic(app);
   }
 
-  const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
+  const port = parseInt(process.env.PORT || "5000", 10);
+  const host = "0.0.0.0";
+
+  server.listen(port, host, () => {
+    log(`✅ Server is running:`);
+    log(`→ http://localhost:${port}`);
+
+    const interfaces = os.networkInterfaces();
+    Object.values(interfaces)
+      .flat()
+      .filter((iface) => iface?.family === "IPv4" && !iface.internal)
+      .forEach((iface) => {
+        log(`→ http://${iface?.address}:${port}`);
+      });
   });
 })();
